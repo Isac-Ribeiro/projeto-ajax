@@ -20,7 +20,6 @@ const DESCRICAO_TEMPO = {
     61: "Chuva leve",
     63: "Chuva moderada",
     65: "Chuva forte",
-    // FIX #9: códigos WMO que faltavam
     66: "Chuva congelante leve",
     67: "Chuva congelante forte",
     71: "Neve leve",
@@ -37,7 +36,6 @@ const DESCRICAO_TEMPO = {
     99: "Temporal forte"
 };
 
-// FIX #4: controle de race condition.
 // tokenBusca incrementa a cada nova busca; callbacks antigos são ignorados.
 // requisicaoAtual guarda o XHR em andamento para poder ser abortado.
 let tokenBusca = 0;
@@ -51,7 +49,6 @@ function definirMensagem(mensagem, tipo = "info") {
     if (tipo === "sucesso") statusMensagem.classList.add("sucesso");
 }
 
-// FIX #4: desabilita/reativa o botão para dar feedback e evitar cliques duplos
 function desabilitarBotao() {
     if (!btnBuscar) return;
     btnBuscar.disabled = true;
@@ -68,7 +65,6 @@ function exibirAba(abaId) {
     abas.forEach((botao) => {
         const ativa = botao.dataset.aba === abaId;
         botao.classList.toggle("active", ativa);
-        // FIX #7: acessibilidade
         botao.setAttribute("aria-selected", ativa ? "true" : "false");
     });
 
@@ -79,8 +75,6 @@ function exibirAba(abaId) {
         painel.hidden = !ativa;
     });
 }
-
-// FIX #3: timeout, sem dupla chamada de onErro, retorna xhr para abort.
 function requisicaoAjax(url, onSucesso, onErro, timeoutMs = 10000) {
     const xhr = new XMLHttpRequest();
     let finalizado = false;
@@ -151,7 +145,6 @@ function carregarSugestoesProximas(nomeLocal) {
                     .join(" - ");
 
                 botao.addEventListener("click", function () {
-                    // FIX #1: usa lat/lon exatos do item clicado — não refaz geocoding pelo nome.
                     if (cidadeInput) cidadeInput.value = item.name;
 
                     const tokenAtual = ++tokenBusca;
@@ -193,8 +186,6 @@ function consultarClima(nomeCidade) {
     if (cidadeInput) cidadeInput.value = cidade;
     definirMensagem(`Buscando previsão do tempo para ${cidade}...`);
     if (resultadoClima) resultadoClima.hidden = true;
-
-    // FIX #4: token novo + abort do request anterior
     const tokenAtual = ++tokenBusca;
     if (requisicaoAtual) {
         try { requisicaoAtual.abort(); } catch (_) {}
@@ -255,7 +246,6 @@ function formatarDiaSemana(dataIso) {
     });
 }
 
-// FIX #2: não cai mais para índice 0 (que mostrava horário já passado)
 function obterHorarioChuva(horarioDados, horaAtualIso) {
     if (!horarioDados?.time || !horarioDados?.precipitation_probability) {
         return "Sem previsão de chuva para hoje";
@@ -312,7 +302,6 @@ function exibirResultado(local, dados) {
 
     if (elVento) elVento.textContent = `${Math.round(atual.wind_speed_10m)} km/h`;
 
-    // FIX #5: monta o HTML inteiro antes de atribuir (sem `+=` em loop)
     if (listaDias && diario?.time) {
         const diasHtml = diario.time.slice(1, 6).map((_, idx) => {
             const i = idx + 1;
@@ -363,7 +352,6 @@ abas.forEach(function (botao) {
     });
 });
 
-// FIX #10: não sobrescreve input se o usuário já tinha digitado algo
 if (!cidadeInput || !cidadeInput.value.trim()) {
     consultarClima("São Paulo");
 } else {

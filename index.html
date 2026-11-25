@@ -16,7 +16,6 @@
     </header>
 
     <main class="container">
-        <!-- FIX #7: roles ARIA para acessibilidade -->
         <nav class="abas" role="tablist">
             <button type="button" role="tab" id="tabBusca"
                     aria-selected="true" aria-controls="painelBusca"
@@ -71,7 +70,6 @@
             </div>
         </section>
 
-        <!-- FIX #8: mensagem inicial em vez de vazio (feedback se o JS demorar) -->
         <div id="statusMensagem" class="mensagem-status">Carregando...</div>
 
         <section id="resultadoClima" class="caixa" hidden>
@@ -109,8 +107,6 @@
             <div id="listaDias" class="grade-dias"></div>
         </section>
     </main>
-
-    <!-- FIX #8: fallback quando JS está desabilitado -->
     <noscript>
         <div class="container">
             <div class="caixa">
