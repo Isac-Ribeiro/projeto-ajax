@@ -1,11 +1,3 @@
-
----
-
-## `CHANGELOG.md`
-
-Crie na mesma pasta, ao lado do README:
-
-```markdown
 # Changelog
 
 Todas as mudanças notáveis deste projeto são documentadas aqui.
