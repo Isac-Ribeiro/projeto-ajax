@@ -1,0 +1,347 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    background-color: #eeeeee;
+    color: #222222;
+}
+
+.container {
+    width: 90%;
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+/* Cabeçalho simples */
+.cabecalho {
+    background-color: #0056b3;
+    color: #ffffff;
+    padding: 20px 0;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #003d82;
+}
+
+.cabecalho h1 {
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+.cabecalho p {
+    font-size: 14px;
+    color: #dce8f5;
+}
+
+/* Navegação em abas */
+.abas {
+    display: flex;
+    gap: 5px;
+    margin-bottom: -1px;
+}
+
+.aba {
+    padding: 10px 18px;
+    background-color: #dcdcdc;
+    border: 1px solid #bbbbbb;
+    border-bottom: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.aba:hover {
+    background-color: #d0d0d0;
+}
+
+.aba.active {
+    background-color: #ffffff;
+    color: #0056b3;
+    border-top: 3px solid #0056b3;
+}
+
+.aba-conteudo {
+    display: none;
+}
+
+.aba-conteudo.active {
+    display: block;
+}
+
+/* Caixas principais */
+.caixa {
+    background-color: #ffffff;
+    border: 1px solid #bbbbbb;
+    padding: 20px;
+    margin-bottom: 18px;
+}
+
+.box-localizacao {
+    background-color: #f5f5f5;
+    border: 1px solid #dddddd;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.form-grupo label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.linha-busca {
+    display: flex;
+    gap: 8px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 9px 10px;
+    font-size: 15px;
+    border: 1px solid #999999;
+    border-radius: 3px;
+}
+
+input[type="text"]:focus {
+    border-color: #0056b3;
+    outline: none;
+}
+
+/* Botões padrão */
+button {
+    font-family: inherit;
+    border-radius: 3px;
+}
+
+.btn-principal {
+    padding: 9px 20px;
+    background-color: #0056b3;
+    color: #ffffff;
+    border: 1px solid #004494;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-principal:hover {
+    background-color: #004494;
+}
+
+.btn-secundario {
+    padding: 6px 12px;
+    background-color: #e9ecef;
+    color: #222222;
+    border: 1px solid #adadad;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.btn-secundario:hover {
+    background-color: #dde0e3;
+}
+
+.atalhos {
+    margin-top: 15px;
+    padding-top: 12px;
+    border-top: 1px dashed #cccccc;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+}
+
+.btn-atalho {
+    padding: 5px 10px;
+    background-color: #f0f4f8;
+    border: 1px solid #b8cce4;
+    color: #0056b3;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.btn-atalho:hover {
+    background-color: #dce7f3;
+}
+
+/* Sugestões */
+.sugestoes {
+    background-color: #fffff0;
+    border-color: #d6d6a8;
+}
+
+.sugestoes p {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.lista-sugestoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.botao-sugestao {
+    padding: 6px 10px;
+    background-color: #ffffff;
+    border: 1px solid #999999;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.botao-sugestao:hover {
+    background-color: #eeeeee;
+}
+
+/* Mensagens */
+.mensagem-status {
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333333;
+}
+
+.mensagem-status.erro {
+    color: #cc0000;
+}
+
+.mensagem-status.sucesso {
+    color: #007700;
+}
+
+/* Ajuda */
+.caixa h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #0056b3;
+}
+
+.lista-ajuda {
+    margin-top: 12px;
+    padding-left: 20px;
+    line-height: 1.7;
+}
+
+/* Resultado do clima */
+.topo-resultado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #dddddd;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.subtitulo-local {
+    color: #666666;
+    font-size: 14px;
+}
+
+.temp-box {
+    text-align: right;
+}
+
+.valor-temp {
+    display: block;
+    font-size: 36px;
+    font-weight: bold;
+    color: #222222;
+}
+
+.texto-clima {
+    font-size: 14px;
+    color: #0056b3;
+    font-weight: bold;
+}
+
+.detalhes-clima {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.item-detalhe {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333333;
+}
+
+/* Previsão 5 dias */
+.grade-dias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.cartao-dia {
+    flex: 1 1 120px;
+    border: 1px solid #cccccc;
+    background-color: #fafafa;
+    padding: 10px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.dia-nome {
+    font-weight: bold;
+    color: #0056b3;
+    margin-bottom: 4px;
+    text-transform: capitalize;
+}
+
+.dia-clima {
+    color: #444444;
+    margin-bottom: 6px;
+}
+
+.dia-temps {
+    font-weight: bold;
+}
+
+/* Rodapé */
+.rodape {
+    text-align: center;
+    padding: 15px 0;
+    font-size: 12px;
+    color: #666666;
+}
+
+@media (max-width: 550px) {
+    .linha-busca {
+        flex-direction: column;
+    }
+
+    .detalhes-clima {
+        grid-template-columns: 1fr;
+    }
+
+    .topo-resultado {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .temp-box {
+        text-align: left;
+    }
+}

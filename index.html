@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Clima</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="cabecalho">
+        <div class="container">
+            <h1>Previsão do Tempo</h1>
+            <p>Sistema de consulta de clima por cidade ou bairro</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- FIX #7: roles ARIA para acessibilidade -->
+        <nav class="abas" role="tablist">
+            <button type="button" role="tab" id="tabBusca"
+                    aria-selected="true" aria-controls="painelBusca"
+                    class="aba active" data-aba="busca">Buscar Clima</button>
+            <button type="button" role="tab" id="tabAjuda"
+                    aria-selected="false" aria-controls="painelAjuda"
+                    class="aba" data-aba="ajuda">Ajuda / Sobre</button>
+        </nav>
+
+        <section id="painelBusca" role="tabpanel" aria-labelledby="tabBusca"
+                 class="aba-conteudo active">
+            <div class="caixa">
+                <div class="form-grupo">
+                    <label for="cidadeInput">Nome da cidade ou bairro:</label>
+                    <div class="linha-busca">
+                        <input
+                            type="text"
+                            id="cidadeInput"
+                            placeholder="Ex: São Paulo, Centro, Curitiba..."
+                            autocomplete="off"
+                        >
+                        <button type="button" id="btnBuscar" class="btn-principal">Pesquisar</button>
+                    </div>
+                </div>
+
+                <div class="atalhos">
+                    <span>Atalhos:</span>
+                    <button type="button" class="btn-atalho" data-cidade="São Paulo">São Paulo</button>
+                    <button type="button" class="btn-atalho" data-cidade="Rio de Janeiro">Rio de Janeiro</button>
+                    <button type="button" class="btn-atalho" data-cidade="Belo Horizonte">Belo Horizonte</button>
+                    <button type="button" class="btn-atalho" data-cidade="Salvador">Salvador</button>
+                    <button type="button" class="btn-atalho" data-cidade="Curitiba">Curitiba</button>
+                </div>
+            </div>
+
+            <div id="sugestoesProximas" class="caixa sugestoes" hidden>
+                <p><strong>Locais encontrados na região:</strong></p>
+                <div id="listaSugestoes" class="lista-sugestoes"></div>
+            </div>
+        </section>
+
+        <section id="painelAjuda" role="tabpanel" aria-labelledby="tabAjuda"
+                 class="aba-conteudo">
+            <div class="caixa">
+                <h2>Como funciona o site</h2>
+                <p>Este projeto usa a API gratuita do Open-Meteo para mostrar os dados do tempo.</p>
+
+                <ul class="lista-ajuda">
+                    <li>Digite o nome da cidade ou bairro no campo de busca e aperte Enter ou clique em Pesquisar.</li>
+                    <li>Você também pode clicar nos botões de atalho para ver as capitais rapidamente.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FIX #8: mensagem inicial em vez de vazio (feedback se o JS demorar) -->
+        <div id="statusMensagem" class="mensagem-status">Carregando...</div>
+
+        <section id="resultadoClima" class="caixa" hidden>
+            <div class="topo-resultado">
+                <div>
+                    <h2 id="nomeCidade">—</h2>
+                    <p id="estadoPais" class="subtitulo-local">—</p>
+                </div>
+                <div class="temp-box">
+                    <span id="temperaturaAtual" class="valor-temp">--°C</span>
+                    <span id="descricaoClima" class="texto-clima">—</span>
+                </div>
+            </div>
+
+            <div class="detalhes-clima">
+                <div class="item-detalhe">
+                    <span>Sensação térmica:</span>
+                    <strong id="sensacaoTermica">--°C</strong>
+                </div>
+                <div class="item-detalhe">
+                    <span>Mínima / Máxima:</span>
+                    <strong id="minMaxHoje">--° / --°</strong>
+                </div>
+                <div class="item-detalhe">
+                    <span>Chance de chuva:</span>
+                    <strong id="chanceChuva">--%</strong>
+                </div>
+                <div class="item-detalhe">
+                    <span>Vento:</span>
+                    <strong id="velocidadeVento">-- km/h</strong>
+                </div>
+            </div>
+
+            <h3>Próximos 5 dias</h3>
+            <div id="listaDias" class="grade-dias"></div>
+        </section>
+    </main>
+
+    <!-- FIX #8: fallback quando JS está desabilitado -->
+    <noscript>
+        <div class="container">
+            <div class="caixa">
+                <p>Este site precisa de JavaScript ativado para mostrar a previsão do tempo.</p>
+            </div>
+        </div>
+    </noscript>
+
+    <footer class="rodape">
+        <div class="container">
+            <p>Trabalho de Desenvolvimento Web - Dados via Open-Meteo</p>
+        </div>
+    </footer>
+
+    <script src="ajax.js"></script>
+</body>
+</html>
